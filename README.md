@@ -51,7 +51,7 @@ Open Portal API is an open-source project that provides a template for building 
    ```
 
 5. **Access the API**:
-   - Base URL: `http://localhost:8080/api/v1/leads`
+   - Base URL: `http://localhost:8080/api/v1/resource`
    - Use your favorite REST client (e.g., Postman) to interact with the API.
 
 ---
@@ -92,7 +92,11 @@ Contributions are welcome! Here's how you can contribute:
 3. Make your changes.
 4. Commit your changes (`git commit -am 'Add new feature'`).
 5. Push to the branch (`git push origin feature/new-feature`).
-6. Create a new Pull Request.
+6. Create a new Pull Request to dev branch.
+
+  Let's use the following flow:
+
+![flux](https://github.com/leovasc5/open-portal-api/assets/70069239/0fe85cf8-5483-4918-8249-bc1ea471edea)
 
 ---
 

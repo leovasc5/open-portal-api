@@ -89,7 +89,7 @@ public class EmailChannel implements NotificationChannel {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(username));
                 
-                message.setSubject("Novo formulário recebido!");
+                message.setSubject("New form received!");
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver.getEmail()));
                 message.setContent(content.toString(), "text/html; charset=utf-8");
 

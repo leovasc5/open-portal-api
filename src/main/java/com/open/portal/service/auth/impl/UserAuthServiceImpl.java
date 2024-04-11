@@ -20,7 +20,7 @@ public class UserAuthServiceImpl implements UserAuthService {
             @Override
             public UserDetails loadUserByUsername(String username) {
                 return userRepository.findByEmail(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found."));
             }
         };
     }

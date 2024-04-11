@@ -22,8 +22,8 @@ public class NotificationService {
     public void createNotification(Form form, User user, Channel channel) {
         String receiverName = user != null ? user.getName() : "E-mail";
 
-        log.info("Iniciando criação da notificação para o usuário: " + receiverName + " no canal: " 
-                + channel.getName() + " vindo do formulário: " + form.getId());
+        log.info("Starting creation of notification from : " + receiverName + " at channel: " 
+                + channel.getName() + " from form: " + form.getId());
 
         Notification notification = Notification.builder()
                 .dateTime(LocalDateTime.now())

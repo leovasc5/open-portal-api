@@ -83,6 +83,13 @@ Here you can see the endpoints documentation:
 
 ---
 
+#### Configuration
+
+![diagram](https://github.com/leovasc5/open-portal-api/assets/70069239/6aa5e742-963e-4737-acb8-08cbceebc616)
+
+
+---
+
 #### Contributing
 
 Contributions are welcome! Here's how you can contribute:

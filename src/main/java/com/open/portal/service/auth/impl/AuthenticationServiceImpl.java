@@ -49,10 +49,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ForbiddenException("E-mail ou senha inválida!"));
+                .orElseThrow(() -> new ForbiddenException("Invalid e-mail or password!"));
 
         if (user.getDeletedBy() != null) {
-            throw new NotFoundException("Usuário não encontrado!");
+            throw new NotFoundException("User not found!");
         }
 
         var jwt = jwtService.generateToken(user);

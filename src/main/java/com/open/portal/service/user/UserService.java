@@ -29,23 +29,26 @@ public class UserService {
 
     public List<UserAdminViewDto> readByAdmin() {
         List<UserAdminViewDto> users = userRepository.findAllByDeletedByIsNull().stream().map(UserMapper::toUserAdminViewDto).toList();
-        users.stream().findFirst().orElseThrow(() -> new NoContentException("Não há usuários cadastrados."));
+        users.stream().findFirst().orElseThrow(() -> new NoContentException("There are no users registered."));
         
         return users;
     }
 
     public UserAdminViewDto readById(Integer id) {
-        UserAdminViewDto user = userRepository.findByIdAndDeletedByIsNull(id).map(UserMapper::toUserAdminViewDto).orElseThrow(() -> new NoContentException("Usuário não encontrado."));
+        UserAdminViewDto user = userRepository.findByIdAndDeletedByIsNull(id).
+            map(UserMapper::toUserAdminViewDto).
+                orElseThrow(() -> new NoContentException("User not found."));
         
         return user;
     }
 
     public User readDomainById(Integer id) {
-        return userRepository.findByIdAndDeletedByIsNull(id).orElseThrow(() -> new NoContentException("Usuário não encontrado.")); 
+        return userRepository.findByIdAndDeletedByIsNull(id).
+            orElseThrow(() -> new NoContentException("User not found.")); 
     }
 
     public UserAdminViewDto update(Integer id, User userModified) {
-        User user = userRepository.findByIdAndDeletedByIsNull(id).orElseThrow(() -> new NoContentException("Usuário não encontrado."));
+        User user = userRepository.findByIdAndDeletedByIsNull(id).orElseThrow(() -> new NoContentException("User not found."));
 
         user.setName(userModified.getName());
 
@@ -61,7 +64,7 @@ public class UserService {
             Boolean phoneNumberExists = userRepository.findByPhoneNumber(userModified.getPhoneNumber()).isPresent();
 
             if (phoneNumberExists) {
-                throw new ConflictException("Telefone já cadastrado.");
+                throw new ConflictException("Phone is already registered.");
             }
             
             user.setPhoneNumber(userModified.getPhoneNumber());
@@ -74,9 +77,9 @@ public class UserService {
     }
 
     public Void delete(Integer id, String token) {
-        User user = userRepository.findByIdAndDeletedByIsNull(id).orElseThrow(() -> new NoContentException("Usuário não encontrado."));
+        User user = userRepository.findByIdAndDeletedByIsNull(id).orElseThrow(() -> new NoContentException("User not found."));
         String username = jwtService.extractUserName(token.substring(7));
-        User deletedBy = userRepository.findByEmail(username).orElseThrow(() -> new NoContentException("Administrador não encontrado."));
+        User deletedBy = userRepository.findByEmail(username).orElseThrow(() -> new NoContentException("Admin not found."));
         
         user.setDeletedBy(deletedBy);
         userRepository.save(user);

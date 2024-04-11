@@ -58,28 +58,28 @@ Open Portal API is an open-source project that provides a template for building 
 
 #### API Endpoints
 
-- **GET /api/v1/leads**: Get all leads.
-- **GET /api/v1/leads/{id}**: Get lead by ID.
-- **POST /api/v1/leads**: Create a new lead.
-  - Request Body:
-    ```json
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "johndoe@example.com",
-      "phone": "+1234567890"
-    }
-    ```
-- **PUT /api/v1/leads/{id}**: Update an existing lead.
-  - Request Body (similar to POST).
-- **DELETE /api/v1/leads/{id}**: Delete a lead by ID.
+- **/api/v1/auth**: Sign-up and sign-in.
+- **/api/v1/form**: CRUD.
+- **/api/v1/user**: Read, Update and Delete.
+- **/api/v1/log**: Create and Read.
+- **/api/v1/image**: Create, Read and Delete.
+- **/api/v1/city**: CRUD.
+- **/api/v1/category**: CRUD.
+
+Here you can see the endpoints documentation:
+
+[Endpoints documentation](https://github.com/leovasc5/open-portal-api/endpoints.md)
 
 ---
 
 #### Configuration
 
-- **Database**: Update `application.properties` with your MySQL database configuration.
-- **Logging**: Adjust logging settings in `logback-spring.xml`.
+- **Database**: Update `environment.properties` with your MySQL database configuration.
+- **JWT Token Expiration**: Update `environment.properties` with the secret and the expiration time (in milliseconds).
+- **E-mail Sender**: Update `environment.properties` with the host, username and password of your e-mail sender.
+- **Slack Sender**: Update `environment.properties` with the bearer token and channel code of the slack channel that receives notifications.
+- **ImageBB API**: Update `environment.properties` with the API key of your image storage environment.
+- **Front-end URL**: Update `environment.properties` if the front-end URL is needed.
 
 ---
 

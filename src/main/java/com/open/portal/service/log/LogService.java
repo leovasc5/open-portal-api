@@ -22,12 +22,12 @@ public class LogService {
     }
 
     public Log readById(Integer idLog) {
-        return logRepository.findById(idLog).orElseThrow(() -> new NoContentException("Log não encontrado."));
+        return logRepository.findById(idLog).orElseThrow(() -> new NoContentException("Log not found."));
     }
 
     public List<Log> read() {
         List<Log> logs = logRepository.findAll();
-        logs.stream().findFirst().orElseThrow(() -> new NoContentException("Não há logs cadastrados."));
+        logs.stream().findFirst().orElseThrow(() -> new NoContentException("There are no logs registered."));
 
         return logs;
     }

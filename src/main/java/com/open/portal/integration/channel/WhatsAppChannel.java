@@ -18,12 +18,12 @@ public class WhatsAppChannel implements NotificationChannel {
     @Override
     public void sendNotification(Form form, List<User> receivers) {
         StringBuilder messageText = new StringBuilder();
-        messageText.append("Nova mensagem de " + form.getAuthorName()  + "\n\n" );
-        messageText.append("Empresa: " + form.getBusinessName() + "\n");
-        messageText.append("Categoria: " + form.getCategory().getName() + "\n");
-        messageText.append("Cidade: " + form.getCity().getName() + "\n");
+        messageText.append("New message from " + form.getAuthorName()  + "\n\n" );
+        messageText.append("Company: " + form.getBusinessName() + "\n");
+        messageText.append("Category: " + form.getCategory().getName() + "\n");
+        messageText.append("City: " + form.getCity().getName() + "\n");
         messageText.append("E-mail: " + form.getContactEmail() + "\n\n");
-        messageText.append("Mensagem: " + form.getDescription());
+        messageText.append("Message: " + form.getDescription());
 
         // receivers.stream()
         //  .map(User::getPhoneNumber)

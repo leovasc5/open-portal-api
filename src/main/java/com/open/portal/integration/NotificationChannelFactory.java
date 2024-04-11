@@ -28,7 +28,7 @@ public class NotificationChannelFactory {
         } else if ("e-mail".equalsIgnoreCase(channelType)) {
             return new EmailChannel();
         } else {
-            throw new PreconditionFailedException(channelType + " não é um canal válido.");
+            throw new PreconditionFailedException(channelType + " is not a valid channel.");
         }
     }    
 }

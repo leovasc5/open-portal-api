@@ -72,20 +72,20 @@ public class FormService {
 
     @Async
     public CompletableFuture<Void> create(Form form) {
-        log.info("Iniciando criação do formulário vindo do e-mail: " + form.getContactEmail());
+        log.info("Starting form creation from: " + form.getContactEmail());
 
         validateExclusiveFields(form.getCity(), form.getCityOthers(),
-        "Não é possível ter uma cidade e uma cidade personalizada ao mesmo tempo.");
+        "It is not possible to have a city and a custom city at the same time.");
 
         validateExclusiveFields(form.getCategory(), form.getCategoryOthers(),
-        "Não é possível ter uma categoria e uma categoria personalizada ao mesmo tempo.");
+        "It is not possible to have a category and a custom category at the same time.");
 
         if (Objects.nonNull(form.getCity())) {
             Optional<City> city = cityRepository.findById(form.getCity().getId());
 
             if (city.isEmpty()) {
                 log.error("Cidade não encontrada.", NotFoundException.class);
-                throw new NotFoundException("Cidade não encontrada.");
+                throw new NotFoundException("City not found.");
             }
 
             form.setCity(city.get());
@@ -100,7 +100,7 @@ public class FormService {
 
             if (category.isEmpty()) {
                 log.error("Categoria não encontrada.", NotFoundException.class);
-                throw new NotFoundException("Categoria não encontrada.");
+                throw new NotFoundException("Category not found.");
             }
 
             form.setCategory(category.get());
@@ -110,24 +110,17 @@ public class FormService {
             form.setCategory(new Category(categoryOthers.getName()));
         }
 
-        System.out.println("PONTO A");
-
         List<Channel> activeChannelTypes = channelRepository.findAllByIsActiveTrue();
-        System.out.println("PONTO B");
-
+        
         if (activeChannelTypes.isEmpty()) {
-            log.error("Não há canais de notificação ativos.", NoContentException.class);
-            throw new NoContentException("Não há canais de notificação ativos.");
+            log.error("There are no active notification channels.", NoContentException.class);
+            throw new NoContentException("There are no active notification channels.");
         }
-        System.out.println("PONTO C");
 
         List<User> receivers = userRepository.findByIsReceiverAndDeletedByIsNull(true);
         form.setDateTime(LocalDateTime.now());
-        System.out.println("PONTO D");
 
         List<NotificationChannel> activeChannels = NotificationChannelFactory.createActiveChannels(activeChannelTypes);
-        System.out.println("PONTO E");
-
 
         return CompletableFuture.runAsync(() -> {
             activeChannels.forEach(channel -> {
@@ -161,8 +154,8 @@ public class FormService {
         List<Form> forms = formRepository.findByDeletedByIsNull();
         
         if (forms.isEmpty()) {
-            log.error("Não há formulários cadastrados", NoContentException.class);
-            throw new NoContentException("Não há formulários cadastrados.");
+            log.error("There are no registered forms", NoContentException.class);
+            throw new NoContentException("There are no registered forms.");
         }
 
         return forms;
@@ -172,8 +165,8 @@ public class FormService {
         Optional<Form> form = formRepository.findByIdAndDeletedByIsNull(idForm);
 
         if (form.isEmpty()) {
-            log.error("Formulário não encontrado.", NotFoundException.class);
-            throw new NoContentException("Formulário não encontrado.");
+            log.error("Form not found.", NotFoundException.class);
+            throw new NoContentException("Form not found.");
         }
 
         return form.get();
@@ -183,10 +176,10 @@ public class FormService {
         List<Form> forms = read();
     
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Formulários");
+        Sheet sheet = workbook.createSheet("Forms");
         
         Row headerRow = sheet.createRow(0);
-        String[] headers = {"Nome", "E-mail", "Empresa", "Categoria", "Cidade", "Mensagem", "Data e Hora"};
+        String[] headers = {"Name", "E-mail", "Company", "Category", "City", "Message", "Datetime"};
         for (int i = 0; i < headers.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(headers[i]);
@@ -222,13 +215,13 @@ public class FormService {
     }
 
     public void delete(Integer idForm, String token) {
-        log.info("Iniciando deleção do formulário de id: " + idForm);
+        log.info("Starting remotion of form from id: " + idForm);
 
         Optional<Form> form = formRepository.findById(idForm);
 
         if (form.isEmpty()) {
-            log.error("Formulário não encontrado.", NotFoundException.class);
-            throw new NotFoundException("Formulário não encontrado.");
+            log.error("Form not found.", NotFoundException.class);
+            throw new NotFoundException("Form not found.");
         }
 
         String username = jwtService.extractUserName(token.substring(7));
@@ -236,7 +229,7 @@ public class FormService {
 
         if (deletedBy.isEmpty()) {
             log.error("Usuário não encontrado.", NotFoundException.class);
-            throw new NotFoundException("Usuário não encontrado.");
+            throw new NotFoundException("User not found.");
         }
 
         form.get().setDeletedBy(deletedBy.get());

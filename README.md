@@ -51,35 +51,42 @@ Open Portal API is an open-source project that provides a template for building 
    ```
 
 5. **Access the API**:
-   - Base URL: `http://localhost:8080/api/v1/leads`
+   - Base URL: `http://localhost:8080/api/v1/resource`
    - Use your favorite REST client (e.g., Postman) to interact with the API.
 
 ---
 
 #### API Endpoints
 
-- **GET /api/v1/leads**: Get all leads.
-- **GET /api/v1/leads/{id}**: Get lead by ID.
-- **POST /api/v1/leads**: Create a new lead.
-  - Request Body:
-    ```json
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "johndoe@example.com",
-      "phone": "+1234567890"
-    }
-    ```
-- **PUT /api/v1/leads/{id}**: Update an existing lead.
-  - Request Body (similar to POST).
-- **DELETE /api/v1/leads/{id}**: Delete a lead by ID.
+- **/api/v1/auth**: Sign-up and sign-in.
+- **/api/v1/form**: CRUD.
+- **/api/v1/user**: Read, Update and Delete.
+- **/api/v1/log**: Create and Read.
+- **/api/v1/image**: Create, Read and Delete.
+- **/api/v1/city**: CRUD.
+- **/api/v1/category**: CRUD.
+
+Here you can see the endpoints documentation:
+
+[Endpoints documentation](https://github.com/leovasc5/open-portal-api/endpoints.md)
 
 ---
 
 #### Configuration
 
-- **Database**: Update `application.properties` with your MySQL database configuration.
-- **Logging**: Adjust logging settings in `logback-spring.xml`.
+- **Database**: Update `environment.properties` with your MySQL database configuration.
+- **JWT Token Expiration**: Update `environment.properties` with the secret and the expiration time (in milliseconds).
+- **E-mail Sender**: Update `environment.properties` with the host, username and password of your e-mail sender.
+- **Slack Sender**: Update `environment.properties` with the bearer token and channel code of the slack channel that receives notifications.
+- **ImageBB API**: Update `environment.properties` with the API key of your image storage environment.
+- **Front-end URL**: Update `environment.properties` if the front-end URL is needed.
+
+---
+
+#### Configuration
+
+![diagram](https://github.com/leovasc5/open-portal-api/assets/70069239/6aa5e742-963e-4737-acb8-08cbceebc616)
+
 
 ---
 
@@ -92,7 +99,11 @@ Contributions are welcome! Here's how you can contribute:
 3. Make your changes.
 4. Commit your changes (`git commit -am 'Add new feature'`).
 5. Push to the branch (`git push origin feature/new-feature`).
-6. Create a new Pull Request.
+6. Create a new Pull Request to dev branch.
+
+  Let's use the following flow:
+
+![flux](https://github.com/leovasc5/open-portal-api/assets/70069239/0fe85cf8-5483-4918-8249-bc1ea471edea)
 
 ---
 

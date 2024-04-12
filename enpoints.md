@@ -144,3 +144,100 @@ Export all forms for a XLSX file.
 ```
 
 ---
+
+### User
+
+#### Read (Only Admin)
+
+Returns all users.
+
+```http
+  GET /api/v1/user
+```
+
+#### Read By ID (Only Admin)
+
+Returns a specific user by ID.
+
+```http
+  GET /api/v1/user/${id}
+```
+
+#### Update (Only Regular User)
+
+Updates an user.
+
+```http
+  PUT /api/v1/user/{id}
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+
+- **Body**
+  ```json
+  {
+    "name": "John Dow",
+    "email": "john.doe@his.domain",
+    "password": "123456",
+    "phoneNumber": "5511912345678", // comes with the Brazilian format,
+                                    // can be changed in the data model
+    "isReceiver": true
+  }
+  ```
+
+#### Delete By ID (Apenas Admin)
+
+Deletes an user by ID.
+
+```http
+  DELETE /api/v1/user/{id}
+```
+
+---
+
+### Log
+
+#### Create
+
+Creates a new log register.
+
+```http
+  POST /api/v1/log
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+
+- **Body**
+  ```json
+  {
+    "dateTime": "2023-11-13T00:20:37"
+  }
+  ```
+
+#### Read All
+
+Returns all logs.
+
+```http
+  GET /api/v1/log
+```
+
+#### Read By ID
+
+Returns a register of log specified by ID.
+
+```http
+  GET /api/v1/log/{id}
+```
+
+#### Delete
+
+Deletes a register by ID.
+
+```http
+  DELETE /api/v1/log/${id}
+```
+
+---

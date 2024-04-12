@@ -32,7 +32,7 @@ Open Portal API is an open-source project that provides a template for building 
 
 1. **Clone the Repository**:
    ```shell
-   git clone https://github.com/your-username/open-portal-api.git
+   git clone https://github.com/leovasc5/open-portal-api.git
    ```
 
 2. **Navigate to Project Directory**:

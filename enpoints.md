@@ -70,4 +70,77 @@ Authenticates an admin user.
   }
   ```
 
+The difference between the two requests is the response returned.
+
+---
+
+### Form
+
+#### Create
+
+Creates a new form.
+
+```http
+  POST /api/v1/form
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+
+- **Body**
+  ```json
+  {
+    "authorName": "John Doe",
+    "authorRole": "Sales Manager",
+    "businessName": "His Company",
+    "contactEmail": "john.doe@his.company",
+    "description": "I need your company to do...",
+    "cityOthers": {
+        "name": "New York"
+    },
+    "categoryOthers": {
+        "name": "Financial"
+    }
+    // other possibilities:
+    "city": {
+      "id": 1
+    },
+    "category": {
+      "id": 1
+    }    
+  }
+  ```
+
+#### Read All
+
+Returns all forms.
+
+```http
+  GET /api/v1/form
+```
+
+#### Read By ID
+
+Returns a specific form by ID.
+
+```http
+  GET /api/v1/form/{id}
+```
+
+#### Delete
+
+Deletes a form by ID.
+
+```http
+  DELETE /api/v1/form/{id}
+```
+
+#### Export to Excel
+
+Export all forms for a XLSX file.
+
+```http
+  GET /api/v1/form/export-excel
+```
+
 ---

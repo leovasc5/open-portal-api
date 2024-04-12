@@ -241,3 +241,151 @@ Deletes a register by ID.
 ```
 
 ---
+
+### Image
+
+#### Read By ID
+
+Returns a specific image by ID.
+
+```http
+  GET /api/v1/image/2
+```
+
+#### Send Image
+
+Send an image.
+
+```http
+  POST /api/v1/image
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+  - `Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW92YXNjNUBob3RtYWlsLmNvbSIsImlhdCI6MTcwMjI3MDMwOSwiZXhwIjoxNzAyMjcxNzQ5fQ.WkVq3MwczCv_8DT1PZppzsWsXU7VrXMBU9O6ZD_KQK4`
+
+- **Body**
+  ```json
+  {
+    "base64Image": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+    "userId": 1
+  }
+  ```
+
+#### Delete Image
+
+Delete an image by ID.
+
+```http
+  DELETE /api/v1/image/2
+```
+
+---
+
+### City
+
+#### Read
+
+Returns all cities.
+
+```http
+  GET /api/v1/city
+```
+
+#### Delete
+
+Delete a city by ID.
+
+```http
+  DELETE /api/v1/city/39
+```
+
+#### Read All
+
+Returns all cities.
+
+```http
+  GET /api/v1/city/list-all
+```
+
+#### Activate
+
+Activates a city by ID.
+
+```http
+  PUT /api/v1/city/active/39
+```
+
+#### Other City
+
+Creates a new city.
+
+```http
+  POST /api/v1/city/others
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+
+- **Body**
+  ```json
+  {
+    "name": "Rio de Janeiro"
+  }
+  ```
+
+---
+
+### Category
+
+#### Read
+
+Returns all categories.
+
+```http
+  GET /api/v1/category
+```
+
+#### Delete
+
+Deletes a category by ID.
+
+```http
+  DELETE /api/v1/category/39
+```
+
+#### Read All
+
+Returns all categories.
+
+```http
+  GET /api/v1/category/list-all
+```
+
+#### Active
+
+Activates a new category by ID.
+
+```http
+  PUT /api/v1/category/active/32
+```
+
+#### Other Category
+
+Creates a new category.
+
+```http
+  POST /api/v1/category/others
+```
+
+- **Headers**
+  - `Content-Type: application/json`
+
+- **Body**
+  ```json
+  {
+    "name": "Financial"
+  }
+  ```
+
+---

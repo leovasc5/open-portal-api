@@ -68,7 +68,7 @@ Open Portal API is an open-source project that provides a template for building 
 
 Here you can see the endpoints documentation:
 
-[Endpoints documentation](https://github.com/leovasc5/open-portal-api/endpoints.md)
+[Endpoints documentation](https://github.com/leovasc5/open-portal-api/blob/main/enpoints.md)
 
 ---
 

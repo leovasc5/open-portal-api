@@ -75,6 +75,7 @@ Here you can see the endpoints documentation:
 #### Configuration
 
 - **Database**: Update `environment.properties` with your MySQL database configuration.
+- **MySQL**: Run the files in `src/main/resources/database` and validate that everything is working.
 - **JWT Token Expiration**: Update `environment.properties` with the secret and the expiration time (in milliseconds).
 - **E-mail Sender**: Update `environment.properties` with the host, username and password of your e-mail sender.
 - **Slack Sender**: Update `environment.properties` with the bearer token and channel code of the slack channel that receives notifications.
